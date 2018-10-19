@@ -52,16 +52,14 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         self.listaPlatos = [Plato]();
-        for i in 1...1000000 {
-            let p = Plato(id: i, nombre: String(i), precio: i, imagen: String(i))
-            self.listaPlatos.append(p)
-         }
         
     }
 
 
     @IBAction func didPressMemoryOverflow(_ sender: Any) {
-        for i in 1...1000000 {
+        for i in 1...1000000000 {
+            let p = Plato(id: i, nombre: String(i), precio: i, imagen: String(i))
+            self.listaPlatos.append(p)
             self.copyListas.append(self.listaPlatos)
         }
         didPressMemoryOverflow("")
