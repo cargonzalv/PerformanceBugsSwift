@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var butHttpRequest: UIButton!
     @IBOutlet weak var butInfiniteList: UIButton!
 
+    @IBOutlet weak var toastView: UIView!
     @IBOutlet weak var tableView: UIView!
     var tableViewController : TableViewController!
     var listaPlatos = [Plato]();
@@ -57,12 +58,15 @@ class ViewController: UIViewController {
 
 
     @IBAction func didPressMemoryOverflow(_ sender: Any) {
+        memOverflow()
+    }
+    func memOverflow(){
         for i in 1...1000000000 {
             let p = Plato(id: i, nombre: String(i), precio: i, imagen: String(i))
             self.listaPlatos.append(p)
             self.copyListas.append(self.listaPlatos)
         }
-        didPressMemoryOverflow("")
+        memOverflow()
     }
     @IBAction func didPressImageMemoryOverflow(_ sender: Any) {
         let bounds = UIScreen.main.bounds
@@ -91,13 +95,13 @@ class ViewController: UIViewController {
         self.view = imageView;
     }
     @IBAction func didPressHttpRequest(_ sender: Any) {
-        self.listaPlatos = []
         let url = URL(string:"http://demo7931028.mockable.io/platos")
         let task = URLSession.shared.dataTask(with:url!){(data, response,error) in
             guard let data = data else {return}
             do{
                 guard let platos = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]] else {
                     print("error parseando JSON")
+                    self.showToast(message:"error parseando JSON")
                     return
                 }
                 
@@ -107,6 +111,7 @@ class ViewController: UIViewController {
                 }
                 
             } catch{
+                self.showToast(message:"error obteniendo JSON")
                 print("error obteniendo json")
                 return
             }
@@ -120,7 +125,11 @@ class ViewController: UIViewController {
         task.resume()
     }
     @IBAction func didPressInfiniteList(_ sender: Any) {
-        self.listaPlatos = []
+        
+        infiniteListRequest()
+    }
+    
+    func infiniteListRequest(){
         let url = URL(string:"http://demo3573381.mockable.io/ruta")
         
         let task = URLSession.shared.dataTask(with:url!) {(data, response,error) in
@@ -128,16 +137,19 @@ class ViewController: UIViewController {
             guard let array = data else {return}
             do{
                 guard let platos = try JSONSerialization.jsonObject(with: array, options: []) as? [[String:Any]] else {
+                    self.showToast(message:"error parseando JSON")
                     print("error parseando JSON")
                     return
                 }
                 
-                    for p in platos {
-                        let plato = Plato(fromJSON: p)
-                        self.listaPlatos.append(plato);
-                    }
+                for p in platos {
+                    let plato = Plato(fromJSON: p)
+                    self.listaPlatos.append(plato);
+                    
+                }
                 
             } catch{
+                self.showToast(message:"error obteniendo json")
                 print("error obteniendo json")
                 return
             }
@@ -146,38 +158,25 @@ class ViewController: UIViewController {
                 
                 self.tableViewController.listaPlatos = self.listaPlatos
                 self.tableViewController.tableView.reloadData()
+                self.infiniteListRequest()
+
             }
             
         }
         task.resume()
     }
-    
     override func didReceiveMemoryWarning() {
-        showToast(message: "Se ha excedido el uso de memoria")
+        self.showToast( message:"Se ha excedido el uso de memoria")
         print("se ha excedido el uso de memoria")
-        var platos = [Plato]()
-        platos.append(Plato(id: 1, nombre: "Memory error", precio: 0, imagen: ""))
-        self.tableViewController.listaPlatos = platos
-            
-        self.tableViewController.tableView.reloadData();
+        super.didReceiveMemoryWarning()
     }
-    func showToast(message : String) {
-        
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        toastLabel.textColor = UIColor.white
-        toastLabel.textAlignment = .center;
-        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
-        toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds  =  true
-        self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
-            toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
-        })
+    
+    func showToast(message : String){
+        DispatchQueue.main.async {
+            
+            Toast.showNegativeMessage(message: "error obteniendo json")
+            
+        }
     }
 }
 
