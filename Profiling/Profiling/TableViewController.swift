@@ -37,11 +37,12 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlatoInfoCell", for: indexPath) as! TableViewCell
         let i = indexPath.row
+        
         cell.nombre.text = listaPlatos[i].nombre
         cell.id.text = String(listaPlatos[i].id)
         cell.precio.text = String(listaPlatos[i].precio)
         let imageUrl:URL = URL(string:listaPlatos[i].imagen)!;
-        let imageData: NSData = NSData(contentsOf: imageUrl)!
+        guard let imageData = NSData(contentsOf: imageUrl) else {return cell}
         let image = UIImage(data: imageData as Data)
         cell.imagen.image = image
         cell.imagen.layer.masksToBounds = true;

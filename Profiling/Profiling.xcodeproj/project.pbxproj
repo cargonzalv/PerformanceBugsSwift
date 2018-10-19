@@ -15,7 +15,6 @@
 		F2FADD682177F04700ACC6BA /* ProfilingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FADD672177F04700ACC6BA /* ProfilingTests.swift */; };
 		F2FADD732177F04700ACC6BA /* ProfilingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FADD722177F04700ACC6BA /* ProfilingUITests.swift */; };
 		F2FADD812177F5FF00ACC6BA /* Plato.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FADD802177F5FF00ACC6BA /* Plato.swift */; };
-		F2FADD832177F62200ACC6BA /* Platos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FADD822177F62200ACC6BA /* Platos.swift */; };
 		F2FADD852178078600ACC6BA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FADD842178078600ACC6BA /* TableViewController.swift */; };
 		F2FADD88217813B700ACC6BA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2FADD86217813B700ACC6BA /* Model.xcdatamodeld */; };
 		F2FADD8A2178215500ACC6BA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FADD892178215500ACC6BA /* TableViewCell.swift */; };
@@ -53,7 +52,6 @@
 		F2FADD722177F04700ACC6BA /* ProfilingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilingUITests.swift; sourceTree = "<group>"; };
 		F2FADD742177F04700ACC6BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2FADD802177F5FF00ACC6BA /* Plato.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plato.swift; sourceTree = "<group>"; };
-		F2FADD822177F62200ACC6BA /* Platos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platos.swift; sourceTree = "<group>"; };
 		F2FADD842178078600ACC6BA /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		F2FADD87217813B700ACC6BA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F2FADD892178215500ACC6BA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				F2FADD5B2177F04700ACC6BA /* LaunchScreen.storyboard */,
 				F2FADD5E2177F04700ACC6BA /* Info.plist */,
 				F2FADD802177F5FF00ACC6BA /* Plato.swift */,
-				F2FADD822177F62200ACC6BA /* Platos.swift */,
 				F2FADD842178078600ACC6BA /* TableViewController.swift */,
 				F2FADD86217813B700ACC6BA /* Model.xcdatamodeld */,
 				F2FADD892178215500ACC6BA /* TableViewCell.swift */,
@@ -273,7 +270,6 @@
 			files = (
 				F2FADD812177F5FF00ACC6BA /* Plato.swift in Sources */,
 				F2FADD552177F04500ACC6BA /* ViewController.swift in Sources */,
-				F2FADD832177F62200ACC6BA /* Platos.swift in Sources */,
 				F2FADD852178078600ACC6BA /* TableViewController.swift in Sources */,
 				F2FADD532177F04500ACC6BA /* AppDelegate.swift in Sources */,
 				F2FADD8A2178215500ACC6BA /* TableViewCell.swift in Sources */,
